@@ -1,0 +1,44 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-09 15:50:50
+ * @LastEditTime: 2020-10-09 15:54:44
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \es6\async和await函数的继发关系.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async和await函数的继发关系</title>
+</head>
+<body>
+    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    const getDataPromise = (url,type='get',data='')=>new Promise((resolve,reject)=>{
+    $.ajax({
+        url:url,
+        type:type,
+        data:data,
+        success:(data)=>{
+            resolve(data)
+        },
+        error:(jqXhr,statusMsg)=>{
+            reject(statusMsg)
+        }
+    })
+})
+async function getGithubData(url){
+    const data1=await getDataPromise(url)
+    const data2=await getDataPromise(data1.followers_url)
+    const data3=await getDataPromise(data2[0].followers_url)
+}
+getGithubData('https://api.github.com/users/kuazhu')
+.then(data=>{
+    console.log(data);
+})
+</script>
+</html>

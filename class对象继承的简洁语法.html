@@ -1,0 +1,37 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-12 08:49:48
+ * @LastEditTime: 2020-10-12 08:53:19
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \es6\class对象继承的简洁语法.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const username='peter'
+    const age=18
+    const obj={
+        username,
+        age,
+        /*
+        username:username,
+        age:age,
+        */
+        sayName()/*sayName:function()*/{
+            console.log('My name is'+this.username);
+        },
+        sayAge(){
+            console.log('i am'+this.age+'years old');
+        }
+    }
+</script>
+</html>

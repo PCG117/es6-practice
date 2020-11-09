@@ -1,0 +1,37 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-09 16:22:52
+ * @LastEditTime: 2020-10-09 16:25:13
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \es6\class定义对象.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class对象</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class Person{
+        constructor(name,age){
+            this.name=name
+            this.age=age
+        }
+        sayName(){
+            console.log('My name is'+this.name);
+        }
+        sayAge(){
+            console.log('I am'+this.age+'years old');
+        }
+        static sayHi(){
+            console.log('hello guys');
+        }
+    }
+
+</script>
+</html>

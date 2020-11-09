@@ -1,0 +1,50 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-12 08:05:17
+ * @LastEditTime: 2020-10-12 08:14:27
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \es6\extends对象继承.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class Person{
+        constructor(name,age){
+            this.name=name
+            this.age=age
+        }
+        sayName(){
+            console.log('my name is'+this.name);
+        }
+        sayAge(){
+            console.log('i am'+this.age+'years old');
+        }
+        static sayHi(){
+            console.log('hello guys');
+        }
+    }
+
+    class Student extends Person{
+        constructor(name,age,major){
+            super(name,age)
+            this.major=major
+        }
+        sayMajor(){
+            console.log('i am from'+this.major);
+        }
+    }
+    let s=new Student('peter',18,'math')
+    let p=new Person('peter',18,'math')
+    console.log(s);
+    console.log(p);
+</script>
+</html>

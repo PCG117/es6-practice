@@ -1,0 +1,29 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-12 09:44:53
+ * @LastEditTime: 2020-10-12 15:56:39
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \es6\拷贝对象.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let obj1={age:18}
+    let obj2={}
+    for(let key in obj1){
+        obj2[key]=obj1[key]
+    }
+    obj2.age=88
+    console.log(obj1);
+    console.log(obj2);
+</script>
+</html>

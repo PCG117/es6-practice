@@ -1,0 +1,52 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-12 10:19:35
+ * @LastEditTime: 2020-10-12 10:30:10
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \es6\自定义函数深拷贝.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let obj1 = {
+        age:18,
+        friends:['Tom'],
+        say:function(){},
+        city:undefined,
+        name:Symbol('Amy'),
+        job:{
+            name:'worker',
+            location:'BJ'
+        }
+    }
+    function deepClone(obj){
+        function isObject(o){
+            return (typeof o === 'function'||typeof o === 'object')&&(o!==null)
+        }
+        if(!isObject(obj)){
+            throw new Error('argument is not a object')
+        }
+        let newObj = Array.isArray(obj)?[...obj]:{...obj}
+        Reflect.ownKey(newObj).forEach(key=>{
+            newObj[key]=isObject(obj[key])?deepClone(obj[key]) : obj[key]
+    })
+
+    return newObj
+}
+
+let obj2 = deepClone(obj1)
+obj2.friends.push('Leo')
+obj2.job.name = 'teacher'
+console.log(obj1)
+
+</script>
+</html>

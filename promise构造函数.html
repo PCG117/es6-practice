@@ -1,0 +1,79 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-09 08:05:06
+ * @LastEditTime: 2020-10-09 09:20:57
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \es6\promise构造函数.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写promise构造函数</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const PENDING='pending'
+    const FULFILLED='fulfilled'
+    const REHECTED='rejected'
+    const p1=new Promise((resolve,reject)=>{
+
+    })
+    function CustomPromise(resolver){
+        if(typeof resolver != 'function'){
+            throw new TypeError('Promise resolver undefined is not a function')
+        }
+        const _this=this
+        _this.status=PENDING
+        _this.value=null
+        _this.resolvedCallbacks=[]
+        _this.rejectedCallbacks=[]
+        function resolve(value){
+            if(_this.status == PENDING){
+                _this.status = FULFILLED
+                _this.value = value
+                _this.resolvedCallbacks.forEach(cb=>cb(_this.value))
+            }
+        }
+        function reject(value){
+            if(_this.status == PENDING){
+                _this.status = REJECTED
+                _this.value = value
+                _this.rejectedCallbacks.forEach(cb=>cb(_this.value))
+
+            }
+        }
+        resolver(resolve,reject)
+    }
+    CustomPromise.prototype.then=function(fulfilled,rejected){
+        const _this =this
+        if(_this.status == FULFILLED){
+            fulfilled(_this.value)
+        }
+        if(_this.status == REJECTED){
+            rejected(_this.value)
+        }
+        if(_this.status == PENDING){
+            _this.resolvedCallbacks.push(fulfilled)
+            _this.rejectedCallbacks.push(rejected)
+        }
+        return this
+    }
+    const p2 = new CustomPromise((resolve,reject)=>{
+        resolve('ok')
+    })
+    p2.then((data)=>{
+        console.log(data)
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+
+    console.log(p1);
+    console.log(p2);
+</script>
+</html>

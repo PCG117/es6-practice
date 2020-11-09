@@ -1,0 +1,41 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-09 07:56:29
+ * @LastEditTime: 2020-10-09 08:39:51
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \es6\promise的race静态方法.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const getTimerPromise=(delay)=>new Promise((resolve,reject)=>{
+        setTimerout(()=>{
+            resolve('timer'+delay+'success data')
+        },delay)
+    })
+    const promises=[200,600,1200].map(delay=>getTimerPromise(delay))
+    const p1=new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            reject('timer'+100+'error data')
+        },1000)
+    })
+    promise.push(p1)
+    const p =Promise.race(promises)
+    p
+    .then(data=>{
+        console.log(data);
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+</script>
+</html>
